@@ -24,9 +24,9 @@ async def process_text(item: Item):
     text = item.text
     result = util.cut_text(text)
     keys = {"Classe A":["hello", "world"], "Classe B":["hello"], "Classe C":["world"]}
-    print(text)
+    pprint(result)
     print(keys)
-    return {"result": text, "keys": keys}
+    return {"result": result, "keys": keys}
 
 
 if __name__ == "__main__":
