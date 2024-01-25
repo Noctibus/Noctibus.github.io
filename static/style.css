@@ -1,4 +1,6 @@
 body {
+	--container-margin: 80px;
+
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
@@ -6,43 +8,43 @@ body {
 }
 
 .container {
+    width: calc(100vw - 2*var(--container-margin));
+    padding: 0 var(--container-margin) 80px var(--container-margin);
+}
+
+.header {
+	width: 100%;
+    height: 100px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    align-items: center;
 }
 
 .input-container {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     width: 100%;
 }
+
 .columns {
     margin-top: 20px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    width: 100%;
 }
+
 .column {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Aligns content at the top */
+    width: 45%;
+    min-height: 200px;
 }
 
+.column textarea {
+	width: 100%;
+	height: 100%;
+}
 
-input[type="text"] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;  /* allows vertical resizing */
-    width: 75%;  /* adjust as needed */
+.column a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;	
 }
 
 button {
@@ -62,20 +64,10 @@ button:hover {
 }
 
 #result {
-    overflow: auto;
-    padding: 0;
-    border: none;
-    background-color: transparent;
     background-color:aliceblue;
     border-radius: 10px;
     padding: 10px;
 }
-
-
-h2 {
-    color: #4CAF50;  /* change the color */
-}
-
 
 .highlight {
     background-color: yellow;
@@ -109,7 +101,6 @@ h2 {
     display: flex;
     align-items: center;
     height: 60px;
-    padding-left:40px;
 }
 
 .titre-classes {
@@ -125,16 +116,6 @@ textarea {
     padding: 10px;
     border-radius: 10px;
     outline: none;
-}
-
-.header {
-    width:100%;
-    display: flex;
-    align-items: center;
-    height: 100px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-bottom: 1px solid #000;
 }
 
 .title {
