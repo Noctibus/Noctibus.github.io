@@ -1,0 +1,110 @@
+body {
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.columns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Aligns content at the top */
+}
+
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;  /* allows vertical resizing */
+    width: 75%;  /* adjust as needed */
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 24px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 20%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+h2 {
+    color: #4CAF50;  /* change the color */
+}
+
+
+.highlight {
+    background-color: yellow;
+}
+
+.key {
+    width: 10ch;
+    text-align: center;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.key:hover {
+    background-color: #45a049;
+}
+
+#keys {
+    display: flex;
+    justify-content: space-between;
+}
+
+.classes-extraites {
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.titre-classes {
+    font-size: 22px;
+    color:#45a049;
+    font-family: 'Montserrat';
+}

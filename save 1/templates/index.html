@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <script src="../static/compute.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>Classifier for patent claim</h2>
+    
+            <div class="input-container">
+                <input type="text" id="inputText" placeholder="Enter text here" style="width: 80%;">
+                <button onclick="sendText()">Process</button>
+            </div>
+    
+            <div class="columns">
+                <div class="column-left">
+                    <h3>Classes extraites</h3>
+                    <div id="keys"></div>
+                </div>
+    
+                <div class="column-right">
+                    <h3>Claims</h3>
+                    <p id="result"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            async function sendText() {
+                const inputText = document.getElementById('inputText').value;
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({text: inputText})
+                });
+                const data = await response.json();
+                const resultElement = document.getElementById('result');
+                resultElement.innerText = data.result;
+            
+                const keysElement = document.getElementById('keys');
+                keysElement.innerHTML = '';
+                for (const key in data.keys) {
+                    const keyElement = document.createElement('span');
+                    keyElement.innerText = key;
+                    keyElement.classList.add('key');
+                    keyElement.addEventListener('click', () => highlightWords(data.keys[key]));
+                    keysElement.appendChild(keyElement);
+                    keysElement.appendChild(document.createElement('br'));  // Add a line break after each key
+                }
+            }
+            
+            function highlightWords(words) {
+                const resultElement = document.getElementById('result');
+                let resultText = resultElement.innerText;
+                for (const word of words) {
+                    const regex = new RegExp(`\\b${word}\\b`, 'g');
+                    resultText = resultText.replace(regex, '<span class="highlight">' + word + '</span>');
+                }
+                resultElement.innerHTML = resultText;
+            }
+            
+
+
+
+        </script>
+
+    </body>
+</html>
