@@ -10,6 +10,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 .input-container {
@@ -18,6 +20,7 @@ body {
     width: 100%;
 }
 .columns {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -44,6 +47,7 @@ input[type="text"] {
 
 button {
     background-color: #4CAF50;
+    font-size: 1.4em;
     color: white;
     padding: 10px 24px;
     margin: 8px 0;
@@ -58,11 +62,15 @@ button:hover {
 }
 
 #result {
-    margin-top: 20px;
+    overflow: auto;
     padding: 0;
     border: none;
     background-color: transparent;
+    background-color:aliceblue;
+    border-radius: 10px;
+    padding: 10px;
 }
+
 
 h2 {
     color: #4CAF50;  /* change the color */
@@ -101,10 +109,56 @@ h2 {
     display: flex;
     align-items: center;
     height: 60px;
+    padding-left:40px;
 }
 
 .titre-classes {
-    font-size: 22px;
+    font-size: 1.4em;
     color:#45a049;
     font-family: 'Montserrat';
+}
+
+textarea {
+    resize: none;
+    font-family: 'Montserrat';
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+}
+
+.header {
+    width:100%;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-bottom: 1px solid #000;
+}
+
+.title {
+    font-size: 3em;
+    color: #4CAF50;
+    font-family: 'Montserrat';
+    padding-left: 10px;
+    display: flex;
+    align-items: center; /* Add this line */
+}
+
+.subtitle {
+    font-size: 1em;
+    font-family: 'Montserrat';
+    padding-left: 40px;
+    padding-top: 9px;
+    text-align: bottom;
+    display: flex;
+    align-items: center; /* Add this line */
+}
+
+
+.logo {
+    scale: 0.2;
+    width: 10%;
+    align-items: left;
 }
