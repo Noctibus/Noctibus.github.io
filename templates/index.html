@@ -56,8 +56,19 @@
                 });
                 const data = await response.json();
                 const resultElement = document.getElementById('result');
-                resultElement.innerText = data.result;
+                resultElement.innerHTML = '';
             
+                // Iterate over the keys and values in the result dictionary
+                for (const key in data.result) {
+                    const keyElement = document.createElement('strong');
+                    keyElement.innerText = key + ':';
+                    resultElement.appendChild(keyElement);
+            
+                    const valueElement = document.createElement('p');
+                    valueElement.innerText = data.result[key];
+                    resultElement.appendChild(valueElement); 
+                }
+
                 const keysElement = document.getElementById('keys');
                 keysElement.innerHTML = '';
                 for (const key in data.keys) {
@@ -70,13 +81,17 @@
                 }
             }
             
+
+
             function highlightWords(words) {
-                const resultElement = document.getElementById('result');
+                const resultElement = document.getElementById('result');;
                 let resultText = resultElement.innerText;
+                console.log(resultText);
                 for (const word of words) {
                     const regex = new RegExp(`\\b${word}\\b`, 'g');
                     resultText = resultText.replace(regex, '<span class="highlight">' + word + '</span>');
                 }
+                console.log(resultText);
                 resultElement.innerHTML = resultText;
             }
 
