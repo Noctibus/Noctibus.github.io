@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 
 from pprint import pprint
 
-import annexe
+import util
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -22,7 +22,7 @@ async def main():
 @app.post("/process")
 async def process_text(item: Item):
     text = item.text
-    result = annexe.cut_text(text)
+    result = util.cut_text(text)
     keys = {"test1":["hello", "world"], "test2":["hello"], "test3":["world"]}
     print(text)
     print(keys)

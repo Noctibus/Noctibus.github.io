@@ -4,28 +4,40 @@
         <link rel="stylesheet" type="text/css" href="../static/style.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <script src="../static/compute.js"></script>
+        <link rel="icon" href="../static/logo.png" type="image/png">
+        <title>Patent Keeper</title>
     </head>
 
     <body>
         <div class="container">
-            <h2>Classifier for patent claim</h2>
+            <div class="header">
+                <div class="logo">
+                    <img src="../static/patentkeeper.png" alt="logo">
+                </div>
+                <div class="title">
+                    <a>Patent Keeper</a>
+                </div>
+                <div class="subtitle">
+                    <h1>A classifier for patent claims</h1>
+                </div>
+            </div>
 
             <div class="classes-extraites">
-                <div class="titre-classes">Classes extraites :</div>
+                <div class="titre-classes">Extracted classes :</div>
                 <div id="keys"></div>
             </div>
 
             <div class="input-container">
-                <button onclick="sendText()">Extraire les classes</button>
+                <button onclick="sendText()">Extract classes</button>
             </div>
     
             <div class="columns">
                 <div class="column">
-                    <textarea id="inputText" placeholder="Enter text here" style="width: 80%; height: 200px;"></textarea>
+                    <textarea id="inputText" placeholder="Enter text here" style="width: 90%; min-height: 200px;"></textarea>
                 </div>
     
                 <div class="column">
-                    <textarea id="result" style="width: 80%; height: 200px;"></textarea>
+                    <a id="result" style="width: 90%; min-height: 200px;"></a>
                 </div>
             </div>
         </div>
@@ -56,10 +68,10 @@
                     keysElement.appendChild(document.createElement('br'));  // Add a line break after each key
                 }
             }
-
+            
             function highlightWords(words) {
                 const resultElement = document.getElementById('result');
-                let resultText = resultElement.innerHTML;  // Change here
+                let resultText = resultElement.innerText;
                 for (const word of words) {
                     const regex = new RegExp(`\\b${word}\\b`, 'g');
                     resultText = resultText.replace(regex, '<span class="highlight">' + word + '</span>');
@@ -67,7 +79,11 @@
                 resultElement.innerHTML = resultText;
             }
 
-
+            // automatically resize height of inputText
+            document.getElementById('inputText').addEventListener('input', function () {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            }, false);
 
 
         </script>
