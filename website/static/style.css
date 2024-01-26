@@ -82,12 +82,16 @@ button:hover {
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-color: grey;
     color: white;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.key.active {
+    background-color: #45a049;
 }
 
 .key:hover {
@@ -144,4 +148,13 @@ textarea {
     scale: 0.2;
     width: 10%;
     align-items: left;
+}
+
+
+#loadingIcon {
+    display:inline;
+    float: right;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
 }
