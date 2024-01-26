@@ -5,7 +5,9 @@ from fastapi.staticfiles import StaticFiles
 
 from pprint import pprint
 
+print("Loading model...")
 import util
+print("Model loaded")
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -23,10 +25,16 @@ async def main():
 async def process_text(item: Item):
     text = item.text
     result = util.cut_text(text)
-    keys = {"test1":["hello", "world"], "test2":["hello"], "test3":["world"]}
-    print(text)
-    print(keys)
-    return {"result": text, "keys": keys}
+    result_classes_final = {}
+    for claim in result:
+        result_classes = util.get_classes(result[claim])
+        for classe in result_classes:
+            if classe not in result_classes_final:
+                result_classes_final[classe] = []
+            result_classes_final[classe] += result_classes[classe]
+    # pprint(result_classes)
+    keys = {"Classe A":["the multiple voice cycles comprising a current voice cycle", "The voice interaction method"], "Classe B":["current speech cycle"], "Classe C":["world"]}
+    return {"result": result, "keys": result_classes_final}
 
 
 if __name__ == "__main__":

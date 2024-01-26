@@ -43,6 +43,8 @@ def cut_text(text:str):
 def get_classes(claim):
     phrases = re.split("[.,:;!?]", claim)
     phrases = [sub.strip() for sub in phrases if sub.strip()]
+    print(phrases)
+    print(len(phrases))
     phrases_embedings = model.encode(phrases)
     lettres = m.predict(phrases_embedings)
     result = {}
