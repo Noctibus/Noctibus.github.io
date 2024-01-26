@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+
+  api:
+    container_name: PatentKeeper
+    image: patentkeeper
+    build: ./
+    restart: always
+    volumes:
+      - ./:/docker/PatentKeeper
+    ports:
+      - 8082:8082
