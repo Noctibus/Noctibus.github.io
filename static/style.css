@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    width: calc(100vw - 2*var(--container-margin));
+    width: calc(99vw - 2*var(--container-margin));
     padding: 0 var(--container-margin) 80px var(--container-margin);
 }
 
@@ -67,10 +67,12 @@ button:hover {
     background-color:aliceblue;
     border-radius: 10px;
     padding: 10px;
+    font-size: 1.2em;
 }
 
 .highlight {
-    background-color: yellow;
+    background-color: rgb(93, 231, 93);
+    border-radius: 5px;
 }
 
 .key {
@@ -112,7 +114,7 @@ button:hover {
 textarea {
     resize: none;
     font-family: 'Montserrat';
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 10px;
     border-radius: 10px;
     outline: none;

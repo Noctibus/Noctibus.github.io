@@ -62,7 +62,6 @@
                 for (const key in data.result) {
                     const keyElement = document.createElement('strong');
                     keyElement.innerText = key + ':';
-                    console.log(keyElement)
                     resultElement.appendChild(keyElement);
             
                     const valueElement = document.createElement('p');
@@ -85,19 +84,25 @@
 
 
             function highlightWords(words) {
+                // remove every highlight
+                const highlights = document.getElementsByClassName('highlight');
+                while (highlights.length) {
+                    const parent = highlights[0].parentNode;
+                    while (highlights[0].firstChild) {
+                        parent.insertBefore(highlights[0].firstChild, highlights[0]);
+                    }
+                    parent.removeChild(highlights[0]);
+                }
+
                 const resultElement = document.getElementById('result');
-                
-                const regex = new RegExp(`\\b${word}\\b`, 'g');
-                
-                for (word of words) {
-		            for (elem of resultElement.getElementsByTagName("p")) {
-		                resultText = resultText.replace(regex, '<span class="highlight">' + word + '</span>');
-		            }
-		        }
-              
-                console.log(resultText);
-                resultElement.appendChild(resultText);
+                for (let word of words) {
+                    const regex = new RegExp(`\\b${word}\\b`, 'g');
+                    for (let elem of resultElement.getElementsByTagName("p")) {
+                        elem.innerHTML = elem.innerHTML.replace(regex, '<span class="highlight">' + word + '</span>');
+                    }
+                }
             }
+            
 
             // automatically resize height of inputText
             document.getElementById('inputText').addEventListener('input', function () {
