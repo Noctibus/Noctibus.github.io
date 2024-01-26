@@ -23,7 +23,7 @@ async def main():
 async def process_text(item: Item):
     text = item.text
     result = util.cut_text(text)
-    keys = {"Classe A":["hello", "world"], "Classe B":["hello"], "Classe C":["world"]}
+    keys = {"Classe A":["the multiple voice cycles comprising a current voice cycle", "The voice interaction method"], "Classe B":["current speech cycle"], "Classe C":["world"]}
     pprint(result)
     print(keys)
     return {"result": result, "keys": keys}
