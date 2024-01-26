@@ -4,26 +4,41 @@
         <link rel="stylesheet" type="text/css" href="../static/style.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <script src="../static/compute.js"></script>
+        <link rel="icon" href="../static/logo.png" type="image/png">
+        <title>Patent Keeper</title>
     </head>
 
     <body>
         <div class="container">
-            <h2>Classifier for patent claim</h2>
-    
+            <div class="header">
+                <div class="logo">
+                    <img src="../static/patentkeeper.png" alt="logo">
+                </div>
+                <div class="title">
+                    <a>Patent Keeper</a>
+                </div>
+                <div class="subtitle">
+                    <h1>A classifier for patent claims</h1>
+                </div>
+            </div>
+            <hr>
+
+            <div class="classes-extraites">
+                <div class="titre-classes">Extracted classes :</div>
+                <div id="keys"></div>
+            </div>
+
             <div class="input-container">
-                <input type="text" id="inputText" placeholder="Enter text here" style="width: 80%;">
-                <button onclick="sendText()">Process</button>
+                <button onclick="sendText()">Extract classes</button>
             </div>
     
             <div class="columns">
-                <div class="column-left">
-                    <h3>Classes extraites</h3>
-                    <div id="keys"></div>
+                <div class="column">
+                    <textarea id="inputText" placeholder="Enter text here"></textarea>
                 </div>
     
-                <div class="column-right">
-                    <h3>Claims</h3>
-                    <p id="result"></p>
+                <div class="column">
+                    <a id="result"></a>
                 </div>
             </div>
         </div>
@@ -41,8 +56,19 @@
                 });
                 const data = await response.json();
                 const resultElement = document.getElementById('result');
-                resultElement.innerText = data.result;
+                resultElement.innerHTML = '';
             
+                // Iterate over the keys and values in the result dictionary
+                for (const key in data.result) {
+                    const keyElement = document.createElement('strong');
+                    keyElement.innerText = key + ':';
+                    resultElement.appendChild(keyElement);
+            
+                    const valueElement = document.createElement('p');
+                    valueElement.innerText = data.result[key];
+                    resultElement.appendChild(valueElement); 
+                }
+
                 const keysElement = document.getElementById('keys');
                 keysElement.innerHTML = '';
                 for (const key in data.keys) {
@@ -55,17 +81,34 @@
                 }
             }
             
+
+
             function highlightWords(words) {
-                const resultElement = document.getElementById('result');
-                let resultText = resultElement.innerText;
-                for (const word of words) {
-                    const regex = new RegExp(`\\b${word}\\b`, 'g');
-                    resultText = resultText.replace(regex, '<span class="highlight">' + word + '</span>');
+                // remove every highlight
+                const highlights = document.getElementsByClassName('highlight');
+                while (highlights.length) {
+                    const parent = highlights[0].parentNode;
+                    while (highlights[0].firstChild) {
+                        parent.insertBefore(highlights[0].firstChild, highlights[0]);
+                    }
+                    parent.removeChild(highlights[0]);
                 }
-                resultElement.innerHTML = resultText;
+
+                const resultElement = document.getElementById('result');
+                for (let word of words) {
+                    const regex = new RegExp(`\\b${word}\\b`, 'g');
+                    for (let elem of resultElement.getElementsByTagName("p")) {
+                        elem.innerHTML = elem.innerHTML.replace(regex, '<span class="highlight">' + word + '</span>');
+                    }
+                }
             }
             
 
+            // automatically resize height of inputText
+            document.getElementById('inputText').addEventListener('input', function () {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            }, false);
 
 
         </script>

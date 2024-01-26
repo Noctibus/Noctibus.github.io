@@ -29,9 +29,12 @@
             </div>
 
             <div class="input-container">
-                <button onclick="sendText()">Extract classes</button>
+                <button onclick="sendText()">
+                    <img id="loadingIcon" src="../static/loading.gif" style="display: none;">
+                    Extract Classes
+                </button>
             </div>
-    
+
             <div class="columns">
                 <div class="column">
                     <textarea id="inputText" placeholder="Enter text here"></textarea>
@@ -45,8 +48,47 @@
 
 
         <script>
+
+            let activeKey = null;
+
+            function highlightWords(words, keyElement) {
+                // remove every highlight
+                const highlights = document.getElementsByClassName('highlight');
+                while (highlights.length) {
+                    const parent = highlights[0].parentNode;
+                    while (highlights[0].firstChild) {
+                        parent.insertBefore(highlights[0].firstChild, highlights[0]);
+                    }
+                    parent.removeChild(highlights[0]);
+                }
+
+                const resultElement = document.getElementById('result');
+                for (let word of words) {
+                    const regex = new RegExp(`\\b${word}\\b`, 'g');
+                    for (let elem of resultElement.getElementsByTagName("p")) {
+                        elem.innerHTML = elem.innerHTML.replace(regex, '<span class="highlight">' + word + '</span>');
+                    }
+                }
+
+                // If there's an active key, remove the active class
+                if (activeKey) {
+                    activeKey.classList.remove('active');
+                }
+
+                // Add the active class to the clicked key
+                keyElement.classList.add('active');
+
+                // Update the active key
+                activeKey = keyElement;
+            }
+
+
+
+
             async function sendText() {
                 const inputText = document.getElementById('inputText').value;
+                const loadingIcon = document.getElementById('loadingIcon');
+                loadingIcon.style.display = 'inline-block';
                 const response = await fetch('/process', {
                     method: 'POST',
                     headers: {
@@ -75,32 +117,11 @@
                     const keyElement = document.createElement('span');
                     keyElement.innerText = key;
                     keyElement.classList.add('key');
-                    keyElement.addEventListener('click', () => highlightWords(data.keys[key]));
+                    keyElement.addEventListener('click', () => highlightWords(data.keys[key], keyElement));
                     keysElement.appendChild(keyElement);
                     keysElement.appendChild(document.createElement('br'));  // Add a line break after each key
                 }
-            }
-            
-
-
-            function highlightWords(words) {
-                // remove every highlight
-                const highlights = document.getElementsByClassName('highlight');
-                while (highlights.length) {
-                    const parent = highlights[0].parentNode;
-                    while (highlights[0].firstChild) {
-                        parent.insertBefore(highlights[0].firstChild, highlights[0]);
-                    }
-                    parent.removeChild(highlights[0]);
-                }
-
-                const resultElement = document.getElementById('result');
-                for (let word of words) {
-                    const regex = new RegExp(`\\b${word}\\b`, 'g');
-                    for (let elem of resultElement.getElementsByTagName("p")) {
-                        elem.innerHTML = elem.innerHTML.replace(regex, '<span class="highlight">' + word + '</span>');
-                    }
-                }
+                loadingIcon.style.display = 'none';
             }
             
 
