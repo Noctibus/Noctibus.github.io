@@ -5,9 +5,9 @@ services:
   api:
     container_name: PatentKeeper
     image: patentkeeper
-    build: ./
+    build: ./website
     restart: always
     volumes:
-      - ./:/docker/PatentKeeper
+      - ./website/:/docker/PatentKeeper
     ports:
       - 8082:8082
