@@ -1,4 +1,4 @@
-# Projet Usecase à Bordeaux pour l'entreprise [https://lipstip.com/](Lipstip), semaine du 22 au 26 janvier 2024.
+# Projet Usecase à Bordeaux pour l'entreprise [Lipstip](https://lipstip.com/), semaine du 22 au 26 janvier 2024.
 
 ## Objectif : classification d'un brevet à déposer. Les revendications sont entrées par l'utilisateur et les classes qui lui sont associées sont retournées. L'algorithme utilise le *k-nearest neighbors algorithm*.
 
