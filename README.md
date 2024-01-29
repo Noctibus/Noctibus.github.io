@@ -8,3 +8,5 @@
 - lancer l'api python :
   ```python server.py```
 - ouvrir une page web à l'adresse ```localhost:8082``` (par défaut)
+
+N.B.: il manque 2 lourds fichiers. Ouvrir une issue pour les obtenir
