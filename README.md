@@ -4,7 +4,7 @@
 
 ### Lancement du projet (python 3.11) :
 - installer les packages python nécessaires :
-  ```pip install requirements.tx```
+  ```pip install requirements.txt```
 - lancer l'api python :
   ```python server.py```
 - ouvrir une page web à l'adresse ```localhost:8082``` (par défaut)
